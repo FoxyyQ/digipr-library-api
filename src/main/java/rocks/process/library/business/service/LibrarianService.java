@@ -27,10 +27,10 @@ public class LibrarianService {
     public void saveLibrarian(@Valid Librarian librarian) throws Exception {
         if (librarian.getId()== null) {
             if (librarianRepository.findByEmail(librarian.getEmail()) != null) {
-                throw new Exception("Email address " + librarian.getEmail() + " already assigned another agent.");
+                throw new Exception("Email address " + librarian.getEmail() + " already assigned another librarian.");
             }
         } else if (librarianRepository.findByEmailAndIdNot(librarian.getEmail(), librarian.getId()) != null) {
-            throw new Exception("Email address " + librarian.getEmail() + " already assigned another agent.");
+            throw new Exception("Email address " + librarian.getEmail() + " already assigned another librarian.");
         }
         librarianRepository.save(librarian);
     }

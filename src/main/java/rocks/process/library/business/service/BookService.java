@@ -40,17 +40,18 @@ public class BookService {
 			throw new Exception("Invalid ISBN number " + book.getISBN()+ " is wrong or belongs to another book.");
 	}
 
-	public void deleteBook(Long id)
+	public void deleteBook(Long bookId)
 	{
-		bookRepository.deleteById(id);
-	}
+            bookRepository.deleteById(bookId);
+      		
+	} 
 	
-	public Book findBylibrarianId(Long librarianId) throws Exception {
+	public Book findByid(Long bookId) throws Exception {
             
-                List<Book> bookList= bookRepository.findBylibrarianId(librarianId);
-		
+   List<Book> bookList= bookRepository.findByIdAndLibrarianId(bookId, librarianService.getCurrentLibrarian().getId());
+            		
 		if(bookList.isEmpty()){
-			throw new Exception("No book assigned to Librarian ID "+librarianId+".");
+			throw new Exception("No book with ID "+bookId+" found.");
 		}
 		return bookList.get(0);
 	}
@@ -69,24 +70,26 @@ public class BookService {
                 return bookRepository.findByISBN(ISBN);        
        }     
        
-        public Book findByid(Long id)throws Exception{
+
+       
+     /*   public Book findByid(Long bookId)throws Exception{
            
-           if(bookRepository.findByid(id)==null){
-          throw new Exception("No book with ISBN "+id+" found.");
+           if(bookRepository.findByid(bookId)==null){
+          throw new Exception("No book with ISBN "+bookId+" found.");
                
            }	
-                return bookRepository.findByid(id);        
-       }    
+                return bookRepository.findByid(bookId);        
+       }  */   
         
         
-        public List<Book> findByAuthor (String author) throws Exception{
+      public List<Book> findByAuthor (String author) throws Exception{
             
             if(bookRepository.findByAuthor(author)==null){
                 throw new Exception ("There is no author with the name " +author);
             }
             
             return bookRepository.findByAuthor(author);
-        }
+        } 
         
         
         
@@ -97,7 +100,7 @@ public class BookService {
             }
             
             return bookRepository.findByAuthor(category);
-        }
+        }  
        
        /*List<Book> findByLibrarianId(Long librarianId);
 	List<Book> findByIdAndLibrarianId(Long Id, Long librarianId);

@@ -25,14 +25,15 @@ import rocks.process.library.data.domain.Book;
 
 import java.util.List;
 
+
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 	Book findByISBN(Long ISBN);
-        Book findByid(Long id);
-	Book findByTitleAndIdNot(String title, Long id);
-	List<Book> findBylibrarianId(Long librarianId);
-	//List<Book> findByidAndlibrarianId(Long id, Long id);
+        Book findByid(Long bookId);
+	Book findByTitleAndIdNot(String title, Long bookId);
+	List<Book> findBylibrarianId(Long id);
+        List<Book> findByIdAndLibrarianId(Long bookId, Long librarianId);
         List<Book> findByAuthor(String author);
         List<Book> findByCategory(String category);
-     //   Book deleteBook(Long id);
+    //    Book deleteBook(Long bookId);
 }

@@ -37,15 +37,15 @@ public class BooksEndpoint {
         }
 
         URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest().path("/{id}")
+                .fromCurrentRequest().path("/{bookId}")
                 .buildAndExpand(Long.toString(book.getId())).toUri();
 
         return ResponseEntity.created(location).body(book);
     }
 
-	//TODO path = "/customer"
+	//TODO path = "/book"
     
-  /*  @GetMapping(path = "/book", produces = "application/json") // we need to tell the framework, to produce json code
+    @GetMapping(path = "/book", produces = "application/json") // we need to tell the framework, to produce json code
     public List<Book> getBooks() {
 		//TODO get all customers
         return bookService.findAllBooks();
@@ -53,26 +53,26 @@ public class BooksEndpoint {
 
 	//TODO uncomment
     @GetMapping(path = "/book/{bookId}", produces = "application/json")
-    public ResponseEntity<Book> getBook(@PathVariable(value = "bookid") String bookId) {
+    public ResponseEntity<Book> getBook(@PathVariable(value = "bookId") String bookId) {
         Book book = null;
         try {
-            book= bookService.findBookByID(Integer.parseInt(bookId));
+            book= bookService.findByid(Long.parseLong(bookId)) ;
             
-			//TODO find customer by id
+			//TODO find book by id
     
         } catch (Exception e) {
 			//TODO HTTP Status: not found
         }
         return ResponseEntity.ok(book);
-    } */
+    } 
 
 	//TODO uncomment
-    @PutMapping(path = "/book/{id}", consumes = "application/json", produces = "application/json") //we have a unique id, therefor we use {customerId}
-    public ResponseEntity<Book> putBook(@RequestBody Book book, @PathVariable(value = "id") String id) {
+    @PutMapping(path = "/book/{bookId}", consumes = "application/json", produces = "application/json") //we have a unique id, therefor we use {customerId}
+    public ResponseEntity<Book> putBook(@RequestBody Book book, @PathVariable(value = "bookId") String id) {
         try {
             book.setId(Long.parseLong(id));
           
-			//TODO edit customer
+			//TODO edit book
             book = bookService.editBook(book);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, e.getMessage());
@@ -81,11 +81,11 @@ public class BooksEndpoint {
     }
 
 	//TODO delete mapping
-    @DeleteMapping(path = "/book/{id}")
-    public ResponseEntity<Void> deleteBook(@PathVariable(value = "id") String id) {
+    @DeleteMapping(path = "/book/{bookId}")
+    public ResponseEntity<Void> deleteBook(@PathVariable(value = "bookId") String bookId) {
         try {
-	//TODO delete customer
-            bookService.deleteBook(Long.parseLong(id)); 
+	//TODO delete book
+            bookService.deleteBook(Long.parseLong(bookId)); 
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, e.getMessage());
         }
