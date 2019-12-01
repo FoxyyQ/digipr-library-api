@@ -11,6 +11,9 @@ import rocks.process.library.data.domain.Librarian;
 
 @Repository
 public interface LibrarianRepository extends JpaRepository<Librarian, Long> {
+        
 	Librarian findByEmail(String email);
-	Librarian findByEmailAndIdNot(String email, Long agentId);
+	Librarian findByEmailAndIdNot(String email, Long id);
+        Librarian findByStatus(String status);
+        Librarian findByName(String name);
 }

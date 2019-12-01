@@ -25,7 +25,7 @@ public class LibrarianService {
     Validator validator;
 
     public void saveLibrarian(@Valid Librarian librarian) throws Exception {
-        if (librarian.getId() == null) {
+        if (librarian.getId()== null) {
             if (librarianRepository.findByEmail(librarian.getEmail()) != null) {
                 throw new Exception("Email address " + librarian.getEmail() + " already assigned another agent.");
             }
@@ -45,7 +45,15 @@ public class LibrarianService {
         Librarian librarian = new Librarian();
         librarian.setName("Demo");
         librarian.setEmail("demo@demo.ch");
-        librarian.setPassword("password");
+        librarian.setNote("busy");
+     //   librarian.setPassword("password");
         this.saveLibrarian(librarian);
     }
+      
 }
+
+/*        Librarian findByLibrarainID(Long Id);
+	Librarian findByEmail(String email);
+	Librarian findByEmailAndIdNot(String email, Long agentId);
+        Librarian findByStatus(String status);
+        Librarian findByName(String name);*/

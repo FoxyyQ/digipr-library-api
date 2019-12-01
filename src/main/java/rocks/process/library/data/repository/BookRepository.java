@@ -1,6 +1,20 @@
 /*
  * Copyright (c) 2018. University of Applied Sciences and Arts Northwestern Switzerland FHNW.
  * All rights reserved.
+
+UC1: Employee login to library application 
+
+UC2: User can search for an existing book in library.
+
+UC3: User can modify entries. 
+
+UC4: User can use a filter function.
+
+UC5: Employee is able to set and update his status to inform other users about the current status.
+
+UC6: User can check status of other User. 
+
+
  */
 
 package rocks.process.library.data.repository;
@@ -13,9 +27,12 @@ import java.util.List;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
-	Book findByMobile(String mobile);
-	Book findByMobileAndIdNot(String mobile, Long bookId);
-	List<Book> findByLibrarianId(Long agentId);
-	List<Book> findByIdAndLibrarianId(Long customerId, Long bookId);
-        Book deletBook(Long bookId);
+	Book findByISBN(Long ISBN);
+        Book findByid(Long id);
+	Book findByTitleAndIdNot(String title, Long id);
+	List<Book> findBylibrarianId(Long librarianId);
+	//List<Book> findByidAndlibrarianId(Long id, Long id);
+        List<Book> findByAuthor(String author);
+        List<Book> findByCategory(String category);
+     //   Book deleteBook(Long id);
 }

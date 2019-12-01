@@ -6,8 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.ISBN;
+
 
 @Entity
 public class Book {
@@ -15,53 +17,103 @@ public class Book {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String name;
-	@Email(message = "Please provide a valid e-mail.")
-	@NotEmpty(message = "Please provide an e-mail.")
-	private String email;
-	private String mobile;
+	
+        
+        @ISBN(message="ISBN number must be equal to 13 digits")
+        private Long ISBN;
+	@NotEmpty(message = "Please provide a title.")
+        @Size(max=20, message="Title must be less than 25 characters")
+        private String title;
+	private String author;
+	private String category;
+        
 	@ManyToOne
 	@JsonBackReference
 	private Librarian librarian;
 
-	public Long getId() {
-		return id;
-	}
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    /**
+     * @return the ISBN
+     */
+    public Long getISBN() {
+        return ISBN;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * @param ISBN the ISBN to set
+     */
+    public void setISBN(Long ISBN) {
+        this.ISBN = ISBN;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    /**
+     * @return the title
+     */
+    public String getTitle() {
+        return title;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getMobile() {
-		return mobile;
-	}
+    /**
+     * @return the author
+     */
+    public String getAuthor() {
+        return author;
+    }
 
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
+    /**
+     * @param author the author to set
+     */
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
-	public Librarian getLibrarian() {
-		return librarian;
-	}
+    /**
+     * @return the category
+     */
+    public String getCategory() {
+        return category;
+    }
 
-	public void setLibrarian(Librarian librarian) {
-		this.librarian = librarian;
-	}
+    /**
+     * @param category the category to set
+     */
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
+    /**
+     * @return the librarian
+     */
+    public Librarian getLibrarian() {
+        return librarian;
+    }
+
+    /**
+     * @param librarian the librarian to set
+     */
+    public void setLibrarian(Librarian librarian) {
+        this.librarian = librarian;
+    }
+
+        
 }

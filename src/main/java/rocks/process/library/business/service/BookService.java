@@ -23,38 +23,86 @@ public class BookService {
 	@Autowired
 	private LibrarianService librarianService;
 
-	public Book editBook(@Valid Book customer) throws Exception {
-		if (customer.getId() == null) {
-			if (bookRepository.findByMobile(customer.getMobile()) == null) {
-				customer.setLibrarian(librarianService.getCurrentLibrarian());
-				return bookRepository.save(customer);
+	public Book editBook(@Valid Book book) throws Exception {
+		if (book.getId() == null) {
+			if (bookRepository.findByISBN(book.getISBN()) == null) {
+				book.setLibrarian(librarianService.getCurrentLibrarian());
+				return bookRepository.save(book);
 			}
-			throw new Exception("Mobile number " + customer.getMobile() + " already assigned to a customer.");
+			throw new Exception("Invalid ISBN number " + book.getISBN()+ " is wrong or belongs to another book.");
 		}
-		if (bookRepository.findByMobileAndIdNot(customer.getMobile(), customer.getId()) == null) {
-			if (customer.getLibrarian() == null) {
-				customer.setLibrarian(librarianService.getCurrentLibrarian());
+		if (bookRepository.findByTitleAndIdNot(book.getTitle(),book.getId()) == null) {
+			if (book.getLibrarian() == null) {
+				book.setLibrarian(librarianService.getCurrentLibrarian());
 			}
-			return bookRepository.save(customer);
+			return bookRepository.save(book);
 		}
-		throw new Exception("Mobile number " + customer.getMobile() + " already assigned to a customer.");
+			throw new Exception("Invalid ISBN number " + book.getISBN()+ " is wrong or belongs to another book.");
 	}
 
-	public void deleteBook(Long bookId)
+	public void deleteBook(Long id)
 	{
-		bookRepository.deleteById(bookId);
+		bookRepository.deleteById(id);
 	}
 	
-	public Book findCustomerById(Long customerId) throws Exception {
-		List<Book> customerList = bookRepository.findByIdAndLibrarianId(customerId, librarianService.getCurrentLibrarian().getId());
-		if(customerList.isEmpty()){
-			throw new Exception("No customer with ID "+customerId+" found.");
+	public Book findBylibrarianId(Long librarianId) throws Exception {
+            
+                List<Book> bookList= bookRepository.findBylibrarianId(librarianId);
+		
+		if(bookList.isEmpty()){
+			throw new Exception("No book assigned to Librarian ID "+librarianId+".");
 		}
-		return customerList.get(0);
+		return bookList.get(0);
 	}
 
-	public List<Book> findAllCustomers() {
-		return bookRepository.findByLibrarianId(librarianService.getCurrentLibrarian().getId());
+	public List<Book> findAllBooks() {
+		return bookRepository.findBylibrarianId(librarianService.getCurrentLibrarian().getId());
 	}
 	
+        
+       public Book findByISBN(Long ISBN)throws Exception{
+           
+           if(bookRepository.findByISBN(ISBN)==null){
+          throw new Exception("No book with ISBN "+ISBN+" found.");
+               
+           }	
+                return bookRepository.findByISBN(ISBN);        
+       }     
+       
+        public Book findByid(Long id)throws Exception{
+           
+           if(bookRepository.findByid(id)==null){
+          throw new Exception("No book with ISBN "+id+" found.");
+               
+           }	
+                return bookRepository.findByid(id);        
+       }    
+        
+        
+        public List<Book> findByAuthor (String author) throws Exception{
+            
+            if(bookRepository.findByAuthor(author)==null){
+                throw new Exception ("There is no author with the name " +author);
+            }
+            
+            return bookRepository.findByAuthor(author);
+        }
+        
+        
+        
+        public List<Book> findByCategory (String category) throws Exception{
+            
+            if(bookRepository.findByAuthor(category)==null){
+                throw new Exception ("There is no author with the name " +category);
+            }
+            
+            return bookRepository.findByAuthor(category);
+        }
+       
+       /*List<Book> findByLibrarianId(Long librarianId);
+	List<Book> findByIdAndLibrarianId(Long Id, Long librarianId);
+        List<Book> findByAuthor(String author);
+        List<Book> findByCategory(String category);
+
+*/
 }

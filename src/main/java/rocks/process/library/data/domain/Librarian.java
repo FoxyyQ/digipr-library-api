@@ -24,60 +24,118 @@ public class Librarian {
 	@Email(message = "Please provide a valid e-mail.")
 	@NotEmpty(message = "Please provide an e-mail.")
 	private String email;
+        @NotEmpty(message = "Please provide a status.")
+        private String status;
+   
+        
 	@org.springframework.data.annotation.Transient //will not be serialized
 	private String password;
+ 
+        
 	@javax.persistence.Transient // will not be stored in DB
-	private String remember;
+        private String note;
+        
 	@OneToMany(mappedBy = "librarian")
 	private List<Book> books;
 
-	public Long getId() {
-		return id;
-	}
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public String getPassword() {
-		String transientPassword = this.password;
-		this.password = null;
-		return transientPassword;
-	}
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public List<Book> getBooks() {
-		return books;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
 
-	public void setBooks(List<Book> customers) {
-		this.books = customers;
-	}
+    /**
+     * @param note the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public String getRemember() {
-		return remember;
-	}
+    /**
+     * @return the books
+     */
+    public List<Book> getBooks() {
+        return books;
+    }
 
-	public void setRemember(String remember) {
-		this.remember = remember;
-	}
+    /**
+     * @param books the books to set
+     */
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    
+
 }

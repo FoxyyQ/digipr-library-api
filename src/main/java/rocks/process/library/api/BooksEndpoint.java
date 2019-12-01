@@ -28,7 +28,7 @@ public class BooksEndpoint {
     @PostMapping(path = "/book", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Book> postBook(@RequestBody Book book) {
         try {
-			// TODO create customer
+			// TODO create book
             book = bookService.editBook(book);
         } catch (ConstraintViolationException e) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, e.getConstraintViolations().iterator().next().getMessage());
@@ -37,7 +37,7 @@ public class BooksEndpoint {
         }
 
         URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest().path("/{bookId}")
+                .fromCurrentRequest().path("/{id}")
                 .buildAndExpand(Long.toString(book.getId())).toUri();
 
         return ResponseEntity.created(location).body(book);
@@ -67,10 +67,10 @@ public class BooksEndpoint {
     } */
 
 	//TODO uncomment
-    @PutMapping(path = "/customer/{customerId}", consumes = "application/json", produces = "application/json") //we have a unique id, therefor we use {customerId}
-    public ResponseEntity<Book> putBook(@RequestBody Book book, @PathVariable(value = "bookId") String bookID) {
+    @PutMapping(path = "/book/{id}", consumes = "application/json", produces = "application/json") //we have a unique id, therefor we use {customerId}
+    public ResponseEntity<Book> putBook(@RequestBody Book book, @PathVariable(value = "id") String id) {
         try {
-            book.setId(Long.parseLong(bookID));
+            book.setId(Long.parseLong(id));
           
 			//TODO edit customer
             book = bookService.editBook(book);
@@ -81,11 +81,11 @@ public class BooksEndpoint {
     }
 
 	//TODO delete mapping
-    @DeleteMapping(path = "/customer/{customerId}")
-    public ResponseEntity<Void> deleteBook(@PathVariable(value = "bookId") String bookID) {
+    @DeleteMapping(path = "/book/{id}")
+    public ResponseEntity<Void> deleteBook(@PathVariable(value = "id") String id) {
         try {
 	//TODO delete customer
-            bookService.deleteBook(Long.parseLong(bookID)); 
+            bookService.deleteBook(Long.parseLong(id)); 
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, e.getMessage());
         }
