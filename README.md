@@ -1,117 +1,28 @@
-# DigiPR Spring Boot API Documentation Example
+# API-Library
+API Library Search Engine for Employees:
 
-This example illustrates how an API can be documented including Swagger/OpenAPI.
+The employee (librarian) has a user ID and a password to login to the application (part of ERP). The
+librarian can search existing books stored in the database. Books can be search by name, author, title,
+publisher, or ISBN. Users are able to add, delete or edit books. The engine also provides a 
+filter function which filters by attributes such as author. The user also can update his status. 
+User can look up other user.
 
-[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
-[![Deploy to Heroku](https://img.shields.io/badge/deploy%20to-Heroku-6762a6.svg?longCache=true)](https://heroku.com/deploy)
+UC1: Employee login to library application 
 
-#### Contents:
-- [Analysis](#analysis)
-  - [Scenario](#scenario)
-  - [Use Case](#use-case)
-- [Design](#design)
-  - [Endpoint Prototype](#endpoint-prototype)
-  - [Data Access / Persistence Layer](#data-access--persistence-layer)
-  - [Business Layer](#business-layer)
-  - [Service Layer / API](#service-layer--api)
-- [Deployment](#deployment)
+UC2: User can search for an existing book in library.
 
-## Analysis
+UC3: User can modify entries. 
 
-### Scenario
+UC4: User can use a filter function.
 
-A-CRM (Agency Customer-Relationship-Management) is the smallest possible and lightweight demonstration tool that allows agents to manage their customer data. Agents have an own access to their customer data.
+UC5: Employee is able to set and update his status to inform other users about the current status.
 
-### Use Case
-![](images/A-CRM-Use-Case.png)
-- UC-1 [Login on A-CRM]: Agents can log-in by entering an email address and password. As an extension, new agents my register first.
-- UC-2 [Register on A-CRM]: Agents can register to get an account (profile) to access the A-CRM system.
-- UC-3 [Edit a customer]: Agents can create, update and delete customers.
-- UC-4 [Show a customer list]: Agents can get an overview over their customers based on a customer list. As an extension they can create, update and delete customers (UC-3).
+UC6: User can check status of other User. 
 
-## Design
-
-### Endpoint Prototype
-**Path**: [`/api/customer`](/api/customer) 
-
-**Method:** `POST`
-
-**Sample Request**  • *Header:* `Content-Type: application/json` • *Body:*
-
-```JSON
-{
-  "agent": {
-    "customers": [
-      null
-    ],
-    "email": "string",
-    "id": 0,
-    "name": "string",
-    "password": "string",
-    "remember": "string"
-  },
-  "email": "string",
-  "id": 0,
-  "mobile": "string",
-  "name": "string"
-}
-```
-
-• *Optional:* `...`
-  
-**Success Response**  • *Code:* `200 OK` • *Sample Body:*
-
-```JSON
-{
-  "agent": {
-    "customers": [
-      null
-    ],
-    "email": "string",
-    "id": 0,
-    "name": "string",
-    "password": "string",
-    "remember": "string"
-  },
-  "email": "string",
-  "id": 0,
-  "mobile": "string",
-  "name": "string"
-}
-```
-
-**Error Response** • *Code:* `404 NOT FOUND`
-
-### Data Access / Persistence Layer
-
-The `rocks.process.acrm.data.domain` package contains the following domain objects / entities including getters and setters:
-
-![](images/A-CRM-Domain-Model.png)
-
-This would be the ERD representation of the domain model:
-
-![](images/A-CRM-ERD.png)
-
-### Business Layer
-
-The `rocks.process.acrm.business.service` package contains classes of the following business services:
-
-![](images/business-service.png)
+Use Case Diagram: 
+![alt text](https://github.com/FoxyyQ/API-Library/blob/master/images/Library%20Use%20Case%20Diagram.png)
 
 
-### Service Layer / API
+Data Access / Persistence Layer
 
-On the service layer, the API for customer management has been realised using the REST style as depicted in the following:
-
-![](images/api-endpoint-vp.png)
-
-Further can be seen using the Swagger-UI.
-
-## Deployment
-
-This spring boot application can be deployed to Heroku by adding the following `Procfile` to the project root:
-```console
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar /target/*.jar
-```
-
-Finally the Swagger-UI can be access using the Heroku app specific address such as: `https://***.herokuapp.com/swagger-ui.html`
+![alt text](images/domainclassdiagram.png)
