@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2018. University of Applied Sciences and Arts Northwestern Switzerland FHNW.
- * All rights reserved.
- */
-
 package rocks.process.library.business.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,8 +56,8 @@ public class BookService {
 	}
 	
         
-       public Book findByISBN(Long ISBN)throws Exception{
-           
+       public Book findByISBN(String ISBN)throws Exception{
+    
            if(bookRepository.findByISBN(ISBN)==null){
           throw new Exception("No book with ISBN "+ISBN+" found.");
                
@@ -101,7 +96,7 @@ public class BookService {
             
             return bookRepository.findByAuthor(category);
         }  
-       
+   
        /*List<Book> findByLibrarianId(Long librarianId);
 	List<Book> findByIdAndLibrarianId(Long Id, Long librarianId);
         List<Book> findByAuthor(String author);

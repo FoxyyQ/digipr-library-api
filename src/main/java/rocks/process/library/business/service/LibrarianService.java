@@ -13,6 +13,7 @@ import rocks.process.library.data.domain.Librarian;
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import javax.validation.Validator;
+import rocks.process.library.data.domain.Book;
 import rocks.process.library.data.repository.LibrarianRepository;
 
 @Service
@@ -45,9 +46,10 @@ public class LibrarianService {
         Librarian librarian = new Librarian();
         librarian.setName("Demo");
         librarian.setEmail("demo@demo.ch");
-        librarian.setNote("busy");
-     //   librarian.setPassword("password");
-        this.saveLibrarian(librarian);
+        librarian.setNote("demo");
+        librarian.setStatus("busy");
+        librarian.setPassword("password");
+        this.saveLibrarian(librarian);           
     }
       
 }

@@ -39,7 +39,7 @@ public class BooksEndpoint {
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{bookId}")
                 .buildAndExpand(Long.toString(book.getId())).toUri();
-
+         
         return ResponseEntity.created(location).body(book);
     }
 
@@ -56,23 +56,31 @@ public class BooksEndpoint {
     public ResponseEntity<Book> getBook(@PathVariable(value = "bookId") String bookId) {
         Book book = null;
         try {
-            book= bookService.findByid(Long.parseLong(bookId)) ;
-            
-			//TODO find book by id
+            book= bookService.findByid(Long.parseLong(bookId)) ; // find book by id
     
         } catch (Exception e) {
-			//TODO HTTP Status: not found
+	 throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, e.getMessage());
         }
         return ResponseEntity.ok(book);
     } 
+    
+        @GetMapping(path = "/book/{ISBN}", produces = "application/json")
+    public ResponseEntity<Book> getBookISBN(@PathVariable(value = "ISBN") String ISBN) {
+        Book book = null;
+        try {
+            book=bookService.findByISBN(ISBN); // find by ISBN
+   
+        } catch (Exception e) {
+		  throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, e.getMessage());
+        }
+        return ResponseEntity.ok(book);
+    }
 
-	//TODO uncomment
     @PutMapping(path = "/book/{bookId}", consumes = "application/json", produces = "application/json") //we have a unique id, therefor we use {customerId}
     public ResponseEntity<Book> putBook(@RequestBody Book book, @PathVariable(value = "bookId") String id) {
         try {
             book.setId(Long.parseLong(id));
-          
-			//TODO edit book
+
             book = bookService.editBook(book);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, e.getMessage());
@@ -80,11 +88,9 @@ public class BooksEndpoint {
         return ResponseEntity.accepted().body(book);
     }
 
-	//TODO delete mapping
     @DeleteMapping(path = "/book/{bookId}")
     public ResponseEntity<Void> deleteBook(@PathVariable(value = "bookId") String bookId) {
         try {
-	//TODO delete book
             bookService.deleteBook(Long.parseLong(bookId)); 
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, e.getMessage());

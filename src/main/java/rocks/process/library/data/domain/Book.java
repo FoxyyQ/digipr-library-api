@@ -17,15 +17,15 @@ public class Book {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
         
-        @ISBN(message="ISBN number must be equal to 13 digits")
-        private Long ISBN;
+        @ISBN(message="This is not a valid ISBN number, please provide a 13-digit number!")
+        private String ISBN;
 	@NotEmpty(message = "Please provide a title.")
         @Size(max=20, message="Title must be less than 25 characters")
         private String title;
 	private String author;
 	private String category;
+        private String publisher;
         
 	@ManyToOne
 	@JsonBackReference
@@ -40,75 +40,58 @@ public class Book {
         this.id = id;
     }
 
-    /**
-     * @return the ISBN
-     */
-    public Long getISBN() {
+
+    public String getISBN() {
         return ISBN;
     }
 
-    /**
-     * @param ISBN the ISBN to set
-     */
-    public void setISBN(Long ISBN) {
+
+    public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
 
-    /**
-     * @return the title
-     */
+  
     public String getTitle() {
         return title;
     }
 
-    /**
-     * @param title the title to set
-     */
     public void setTitle(String title) {
         this.title = title;
     }
 
-    /**
-     * @return the author
-     */
     public String getAuthor() {
         return author;
     }
 
-    /**
-     * @param author the author to set
-     */
     public void setAuthor(String author) {
         this.author = author;
     }
 
-    /**
-     * @return the category
-     */
     public String getCategory() {
         return category;
     }
 
-    /**
-     * @param category the category to set
-     */
     public void setCategory(String category) {
         this.category = category;
     }
 
-    /**
-     * @return the librarian
-     */
     public Librarian getLibrarian() {
         return librarian;
     }
 
-    /**
-     * @param librarian the librarian to set
-     */
+
     public void setLibrarian(Librarian librarian) {
         this.librarian = librarian;
     }
 
-        
+    public String getPublisher() {
+        return publisher;
+    }
+
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+    
+      
 }
