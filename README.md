@@ -20,7 +20,7 @@ UC5: Employee is able to set and update his status to inform other users about t
 UC6: User can check status of other User. 
 
 Use Case Diagram: 
-![alt text](https://github.com/FoxyyQ/API-Library/blob/master/images/Library%20Use%20Case%20Diagram.png)
+![alt text](images/Library%20Use%20Case%20Diagram.png)
 
 
 Data Access / Persistence Layer
