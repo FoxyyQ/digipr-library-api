@@ -19,14 +19,14 @@ UC5: Employee is able to set and update his status to inform other users about t
 
 UC6: User can check status of other User. 
 
-Use Case Diagram: 
+**Use Case Diagram:** 
 ![alt text](images/Library%20Use%20Case%20Diagram.png)
 
 
-##Data Access / Persistence Layer
+**Data Access / Persistence Layer**
 
 ![alt text](images/domainclassdiagram.png)
 
-##Business Layer
+**Business Layer**
 
 ![alt text](images/BusinessLayer.png)
