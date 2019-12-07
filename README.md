@@ -1,9 +1,9 @@
-# API-Library
+### API-Library
 API Library Search Engine for Employees:
 
-The employee (librarian) has a user ID and a password to login to the application (part of ERP). The
+The employee (librarian) has a user ID and a password to login to the application. The
 librarian can search existing books stored in the database. Books can be search by name, author, title,
-publisher, or ISBN. Users are able to add, delete or edit books. The engine also provides a 
+publisher or ISBN. Users are able to add, delete or edit books. The engine also provides a 
 filter function which filters by attributes such as author. The user also can update his status. 
 User can look up other user.
 
@@ -19,10 +19,14 @@ UC5: Employee is able to set and update his status to inform other users about t
 
 UC6: User can check status of other User. 
 
-Use Case Diagram: 
+**Use Case Diagram:** 
 ![alt text](images/Library%20Use%20Case%20Diagram.png)
 
 
-Data Access / Persistence Layer
+**Data Access / Persistence Layer**
 
 ![alt text](images/domainclassdiagram.png)
+
+**Business Layer**
+
+![alt text](images/BusinessLayer.png)
