@@ -63,20 +63,8 @@ public class BookService {
                
            }	
                 return bookRepository.findByISBN(ISBN);        
-       }     
-       
-
-       
-     /*   public Book findByid(Long bookId)throws Exception{
-           
-           if(bookRepository.findByid(bookId)==null){
-          throw new Exception("No book with ISBN "+bookId+" found.");
-               
-           }	
-                return bookRepository.findByid(bookId);        
-       }  */   
-        
-        
+       }    
+    
       public List<Book> findByAuthor (String author) throws Exception{
             
             if(bookRepository.findByAuthor(author)==null){
@@ -86,8 +74,7 @@ public class BookService {
             return bookRepository.findByAuthor(author);
         } 
         
-        
-        
+  
         public List<Book> findByCategory (String category) throws Exception{
             
             if(bookRepository.findByAuthor(category)==null){
@@ -97,10 +84,4 @@ public class BookService {
             return bookRepository.findByAuthor(category);
         }  
    
-       /*List<Book> findByLibrarianId(Long librarianId);
-	List<Book> findByIdAndLibrarianId(Long Id, Long librarianId);
-        List<Book> findByAuthor(String author);
-        List<Book> findByCategory(String category);
-
-*/
 }

@@ -51,7 +51,6 @@ public class BooksEndpoint {
         return bookService.findAllBooks();
     } 
 
-	//TODO uncomment
     @GetMapping(path = "/book/{bookId}", produces = "application/json")
     public ResponseEntity<Book> getBook(@PathVariable(value = "bookId") String bookId) {
         Book book = null;
@@ -63,18 +62,6 @@ public class BooksEndpoint {
         }
         return ResponseEntity.ok(book);
     } 
-    
-        @GetMapping(path = "/book/{ISBN}", produces = "application/json")
-    public ResponseEntity<Book> getBookISBN(@PathVariable(value = "ISBN") String ISBN) {
-        Book book = null;
-        try {
-            book=bookService.findByISBN(ISBN); // find by ISBN
-   
-        } catch (Exception e) {
-		  throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, e.getMessage());
-        }
-        return ResponseEntity.ok(book);
-    }
 
     @PutMapping(path = "/book/{bookId}", consumes = "application/json", produces = "application/json") //we have a unique id, therefor we use {customerId}
     public ResponseEntity<Book> putBook(@RequestBody Book book, @PathVariable(value = "bookId") String id) {
