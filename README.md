@@ -1,9 +1,9 @@
 ### API-Library
 API Library Search Engine for Employees:
 
-The employee (librarian) has a user ID and a password to login to the application (part of ERP). The
+The employee (librarian) has a user ID and a password to login to the application. The
 librarian can search existing books stored in the database. Books can be search by name, author, title,
-publisher, or ISBN. Users are able to add, delete or edit books. The engine also provides a 
+publisher or ISBN. Users are able to add, delete or edit books. The engine also provides a 
 filter function which filters by attributes such as author. The user also can update his status. 
 User can look up other user.
 
