@@ -1,4 +1,4 @@
-# API-Library
+### API-Library
 API Library Search Engine for Employees:
 
 The employee (librarian) has a user ID and a password to login to the application (part of ERP). The
@@ -23,6 +23,10 @@ Use Case Diagram:
 ![alt text](images/Library%20Use%20Case%20Diagram.png)
 
 
-Data Access / Persistence Layer
+##Data Access / Persistence Layer
 
 ![alt text](images/domainclassdiagram.png)
+
+##Business Layer
+
+![alt text](images/BusinessLayer.png)
